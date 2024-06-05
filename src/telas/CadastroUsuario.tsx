@@ -4,7 +4,7 @@ import { Cabecalho } from '../componentes/Cabecalho';
 import { FormularioUsuario } from '../componentes/FormularioCadastroUsuario';
 
 
-export const Cadastro = () => {
+export const CadastroUsuario = () => {
 
     return (
         <View style={estilos.conteiner}>

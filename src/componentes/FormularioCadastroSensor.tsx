@@ -1,61 +1,74 @@
-import { useState } from 'react'
+import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native'
-import { Feather } from '@expo/vector-icons'
+import axios from 'axios';
+import { useNavigation } from '@react-navigation/native';
 
-interface FormularioAmbienteEquipamentoProps {
-    adicionar: (descricao: string, 
-                statusOperacional: string, 
-                instrucoesSeguranca: string, 
-                contatoResponsavel: string, 
-                latitude: string,
-                longitude: string) => void
-}
 
-export const FormularioCadastroSensor = ({adicionar}: FormularioAmbienteEquipamentoProps) => { 
 
-    const [descricao, setDescricao] = useState('')
-    const [statusOperacional, setStatusOperacional] = useState('')
-    const [instrucoesSeguranca, setInstrucoesSeguranca] = useState('')
-    const [contatoResponsavel, setContatoResponsavel] = useState('')
+export const FormularioCadastroSensor: React.FC = () => {
+    const [tipo, setTipo] = useState('')
+    const [mac_address, setMacAddress] = useState('')
     const [latitude, setLatitude] = useState('')
     const [longitude, setLongitude] = useState('')
+    const [localizacao, setLocalizacao] = useState('')
+    const [responsavel, setResponsavel] = useState('')
+    const [unidade_medida, setUnidadeMedida] = useState('')
+    const [status_operacional, setStatusOperacional] = useState('')
+    const [observacao, setObservacao] = useState('')
+    const navigation = useNavigation();
+
+
+
+    const cadastrarSensor = async () => {
+        try {
+            // Fazer a requisição de cadastro de sensor
+            const response = await axios.post(
+                'http://10.0.2.2:8000/api/sensores/',
+
+                {
+
+                    tipo: tipo,
+                    mac_address: mac_address,
+                    latitude: latitude,
+                    longitude: longitude,
+                    localizacao: localizacao,
+                    responsavel: responsavel,
+                    unidade_medida: unidade_medida,
+                    status_operacional: status_operacional,
+                    observacao: observacao
+                }
+
+
+            );
+
+            
+            navigation.navigate('rotasTab');
+        } catch (error) {
+            
+            console.error('Erro de cadastro do sensor:', error);
+        }
+    };
 
     return(
-        <View style={estilos.conteiner}>
+        <View style={estilos.container}>
 
-            <View style={estilos.conteinerCampos}>
+            <View style={estilos.containerCampos}>
                 <TextInput
                     style={estilos.campo}
-                    placeholder='Descrição' 
+                    placeholder='Tipo' 
                     placeholderTextColor='#01233c'
                     keyboardType='default'
-                    onChangeText={setDescricao}
-                    value={descricao}
+                    onChangeText={setTipo}
+                    value={tipo}
                 />
                 <TextInput 
                     style={estilos.campo}
-                    placeholder='Status operacional'
+                    placeholder='Mac Address'
                     placeholderTextColor='#01233c'
                     keyboardType='default'
-                    onChangeText={setStatusOperacional}
-                    value={statusOperacional}      
+                    onChangeText={setMacAddress}
+                    value={mac_address}      
                 />
-                <TextInput 
-                    style={estilos.campo}
-                    placeholder='Instruções de segurança'
-                    placeholderTextColor='#01233c'    
-                    keyboardType='default'           
-                    onChangeText={setInstrucoesSeguranca}
-                    value={instrucoesSeguranca}
-                />
-                <TextInput 
-                    style={estilos.campo}
-                    placeholder='Contato do responsável'
-                    placeholderTextColor='#01233c'
-                    keyboardType='default'                
-                    onChangeText={setContatoResponsavel}
-                    value={contatoResponsavel}
-                />      
                 <TextInput 
                     style={estilos.campo}
                     placeholder='Latitude'
@@ -73,56 +86,89 @@ export const FormularioCadastroSensor = ({adicionar}: FormularioAmbienteEquipame
                     value={longitude}
                 />                                 
             </View>
-
-            <TouchableOpacity 
+                <TextInput 
+                    style={estilos.campo}
+                    placeholder='Localização'
+                    placeholderTextColor='#01233c'    
+                    keyboardType='default'           
+                    onChangeText={setLocalizacao}
+                    value={localizacao}
+                />
+                <TextInput 
+                    style={estilos.campo}
+                    placeholder='Responsável'
+                    placeholderTextColor='#01233c'
+                    keyboardType='default'                
+                    onChangeText={setResponsavel}
+                    value={responsavel}
+                /> 
+                <TextInput 
+                    style={estilos.campo}
+                    placeholder='Unidade Medida'
+                    placeholderTextColor='#01233c'
+                    keyboardType='default'                
+                    onChangeText={setUnidadeMedida}
+                    value={unidade_medida}
+                />  
+                <TextInput 
+                    style={estilos.campo}
+                    placeholder=' Status Operacional'
+                    placeholderTextColor='#01233c'
+                    keyboardType='default'                
+                    onChangeText={setStatusOperacional}
+                    value={status_operacional}
+                />  
+                <TextInput 
+                    style={estilos.campo}
+                    placeholder='Observação'
+                    placeholderTextColor='#01233c'
+                    keyboardType='default'                
+                    onChangeText={setObservacao}
+                    value={observacao}
+                />      
+                
+            <TouchableOpacity
                 style={estilos.botao}
-                onPress={ () => adicionar(descricao, 
-                                          statusOperacional, 
-                                          instrucoesSeguranca, 
-                                          contatoResponsavel, 
-                                          latitude,
-                                          longitude) }
+                onPress={cadastrarSensor}
             >
-                <Text>
-                    <Feather 
-                        name="user-plus" 
-                        size={24} 
-                        color='#dee2e6' 
-                    />   
-                </Text>
+                <Text style={estilos.textoBotao}>Cadastrar Sensor</Text>
             </TouchableOpacity>
+
+            
         </View>
     )
 }
-
 const estilos = StyleSheet.create({
-    conteiner: {
-        flexDirection: 'row',
+    container: {
+        flex: 1,
+        backgroundColor: '#000',
         justifyContent: 'center',
         alignItems: 'center',
-        paddingHorizontal: 5,
-        paddingVertical: 10,
-        marginVertical: 10,
     },
-    conteinerCampos: {
-        flex: 1,
+    containerCampos: {
+        marginBottom: 20,
     },
     campo: {
         height: 50,
-        backgroundColor: '#dee2e6',
-        color: '#01233c',
+        width: 300,
+        backgroundColor: '#4f030a',
+        color: '#fff',
         marginVertical: 5,
         borderRadius: 5,
         padding: 10,
         fontSize: 16,
     },
     botao: {
-        width: 60,
-        height: 350,
-        marginStart: 10,
+        height: 50,
+        width: 300,
         backgroundColor: '#4f030a',
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 5,
     },
-  });
+    textoBotao: {
+        color: '#fff',
+        fontSize: 16,
+    },
+});
+ 

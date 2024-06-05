@@ -2,8 +2,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Login } from '../telas/Login';
 import { RotasTab } from './RotasTab';
-import { Cadastro } from '../telas/CadastroUsuario';
+import { CadastroUsuario } from '../telas/CadastroUsuario';
 import { AuthProvider } from '../componentes/AuthContext' // Importe a tela Home
+import React from 'react';
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
@@ -22,7 +23,7 @@ export function RotasStack() {
                     />
                     <Screen
                         name='cadastro'
-                        component={Cadastro}
+                        component={CadastroUsuario}
                     />
                 </Navigator>
             </NavigationContainer>

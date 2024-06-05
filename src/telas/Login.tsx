@@ -27,7 +27,7 @@ export const Login = () => {
             const token = response.data.access;
             console.log('Login bem-sucedido:', token);
             setToken(token); // Atualiza o token no contexto
-            navigation.navigate('rotasTab');
+            navigation.navigate('inicial');
         } catch (error) {
             console.error('Erro de login:', error);
         }

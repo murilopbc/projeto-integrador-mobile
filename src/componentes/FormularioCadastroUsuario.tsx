@@ -25,7 +25,7 @@ export const FormularioUsuario: React.FC = () => {
             navigation.navigate('inicial');
         } catch (error) {
             
-            console.error('Erro de cadastro:', error);
+            console.error('Erro de cadastro so usuário:', error);
         }
     };
 
