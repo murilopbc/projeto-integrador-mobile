@@ -24,7 +24,7 @@ interface Sensor {
   observacao: string;
 }
 
-export const Inicial = () => {
+export const Mapa = () => {
   const [location, setLocation] = useState<LocationObject | null>(null);
   const [sensors, setSensors] = useState<Sensor[]>([]);
   const mapRef = useRef<MapView>(null);

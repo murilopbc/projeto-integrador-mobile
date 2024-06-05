@@ -42,7 +42,7 @@ export const FormularioCadastroSensor: React.FC = () => {
             );
 
             
-            navigation.navigate('rotasTab');
+            navigation.navigate('inicial');
         } catch (error) {
             
             console.error('Erro de cadastro do sensor:', error);

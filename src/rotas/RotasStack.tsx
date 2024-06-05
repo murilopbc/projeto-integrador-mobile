@@ -3,7 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Login } from '../telas/Login';
 import { RotasTab } from './RotasTab';
 import { CadastroUsuario } from '../telas/CadastroUsuario';
-import { AuthProvider } from '../componentes/AuthContext' // Importe a tela Home
+import { AuthProvider } from '../componentes/AuthContext'
 import React from 'react';
 
 const { Navigator, Screen } = createNativeStackNavigator();

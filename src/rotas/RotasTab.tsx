@@ -1,5 +1,5 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
-import {Inicial} from '../telas/Inicial'
+import {Mapa} from '../telas/Mapa'
 import {CadastroSensor} from '../telas/CadastroSensor'
 import { Feather } from '@expo/vector-icons'
 import React from 'react'
@@ -25,10 +25,10 @@ export function RotasTab(){
 
             <Screen 
                 name='inicial'
-                component={Inicial}
+                component={Mapa}
                 options={{
                     tabBarIcon: ({color, size}) => (
-                        <Feather name="home" size={size} color={color} /> 
+                        <Feather name="map-pin" size={size} color={color} /> 
                     )
                 }}
             />
@@ -38,10 +38,12 @@ export function RotasTab(){
                 component={CadastroSensor}
                 options={{
                     tabBarIcon: ({color, size}) => (
-                        <Feather name="map-pin" size={size} color={color} /> 
+                        <Feather name="wifi" size={size} color={color} /> 
                     )
                 }}                
             />
+            
+
 
         </Navigator>
     )
