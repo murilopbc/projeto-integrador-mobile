@@ -17,13 +17,13 @@ export const Cabecalho = ({titulo, subtitulo}: CabecalhoProps) => {
 
 const estilos = StyleSheet.create({
   conteiner: {
-    backgroundColor: '#4f030a',
+    backgroundColor: '#fff',
     alignItems: 'center',
     paddingVertical: 12,
     width: '100%'
   },
   texto: {
-    color: '#fff',
+    color: '#000',
     fontSize: 24,
     fontWeight: '300',
     textAlign: 'center',

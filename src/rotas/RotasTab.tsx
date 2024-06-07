@@ -15,7 +15,7 @@ export function RotasTab(){
                 tabBarActiveTintColor: '#fff',
                 tabBarInactiveTintColor: '#6c757d',
                 tabBarStyle: {
-                    backgroundColor: '#4f030a',
+                    backgroundColor: '#000',
                     borderTopColor: 0,
                     paddingBottom: 10,
                     paddingTop: 10

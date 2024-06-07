@@ -103,7 +103,7 @@ export const Mapa = () => {
             >
               <View style={estilos.marcadorContainer}>
                 <Image
-                  source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiM2Hprc9DFff5xOaIQeUYjughU73vJjytYw&s' }}
+                  source={{ uri: 'https://static.vecteezy.com/ti/vetor-gratis/p1/9326539-sensor-movimento-icone-sensor-ondas-sinal-icone-seguranca-conexao-negocio-simbolo-movimento-sensor-conceito-sensor-sinal-vetor.jpg' }}
                   style={estilos.mapMarkerImage}
                 />
               </View>
@@ -132,14 +132,13 @@ const estilos = StyleSheet.create({
   marcadorContainer: {
     width: 90,
     height: 70,
-    backgroundColor: '#34CB79',
     flexDirection: 'column',
     borderRadius: 8,
     alignItems: 'center'
   },
   mapMarkerImage: {
-    width: 90,
-    height: 45,
+    width: 30,
+    height: 30,
     resizeMode: 'cover'
   }
 });
