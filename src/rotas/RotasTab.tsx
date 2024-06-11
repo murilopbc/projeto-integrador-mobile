@@ -1,5 +1,5 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
-import {Mapa} from '../telas/Mapa'
+import Mapa from '../telas/Mapa'
 import {CadastroSensor} from '../telas/CadastroSensor'
 import { Feather } from '@expo/vector-icons'
 import React from 'react'
@@ -34,15 +34,14 @@ export function RotasTab(){
             />
 
             <Screen 
-                name='ambiente'
+                name='cadSensor'
                 component={CadastroSensor}
                 options={{
                     tabBarIcon: ({color, size}) => (
                         <Feather name="wifi" size={size} color={color} /> 
                     )
                 }}                
-            />
-            
+            />  
 
 
         </Navigator>
