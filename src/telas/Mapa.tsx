@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Modal, Text, TouchableOpacity, View } from 'react-native';
+import { Modal, Text, TouchableOpacity, View, StyleSheet, Dimensions } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import * as Location from 'expo-location';
-import styles from './styles/styleMap'
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 
@@ -28,8 +27,8 @@ export default function Geo() {
 
     const fetchSensors = async () => {
         try {
-            const response1 = await axios.get('http://10.0.2.2:8000/api/sensores/1');
-            const response2 = await axios.get('http://10.0.2.2:8000/api/sensores/4');
+            const response1 = await axios.get('http://10.0.2.2:8000/api/sensores/4');
+            const response2 = await axios.get('http://10.0.2.2:8000/api/sensores/10');
             const sensors = [response1.data, response2.data];
             setSensores(sensors);
             setFixedPoints(sensors);
@@ -134,7 +133,7 @@ export default function Geo() {
                 <View style={styles.cx}><Text style={styles.cxTxt}>Distância até o ponto fixo 2: </Text>{distance2 !== null && <Text style={styles.cxTxt}>{distance2.toFixed(2)} metros</Text>}</View>
                 <View style={styles.cx}><Text style={styles.cxTxt}>Temperatura:</Text><Text style={styles.cxTxt}>{temp}ºC</Text></View>
                 <TouchableOpacity onPress={() => setModalVisible(true)}>
-                    <Text style={{ color: 'blue', textDecorationLine: 'underline' }}>Details</Text>
+                    <Text style={{ color: 'blue', textDecorationLine: 'underline' }}>Detalhes</Text>
                 </TouchableOpacity>
             </View>
 
@@ -175,3 +174,87 @@ export default function Geo() {
         </View>
     );
 }
+
+const { width, height } = Dimensions.get('window');
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    btn: {
+        width: '100%',
+        height: 80,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    map: {
+        width: width - 40,
+        height: height / 2,
+        borderRadius: 10,
+    },
+    button: {
+        width: "70%",
+        height: 40,
+        backgroundColor: '#000',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    buttonText: {
+        color: 'white'
+    },
+    cxs: {
+        width: '80%'
+    },
+    cx: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: 5,
+        marginBottom: 8,
+        borderWidth: 1,
+        padding: 5,
+        borderColor: '#999'
+    },
+    cxTxt: {
+        fontSize: 12,
+    },
+    modalContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    },
+    modalView: {
+        margin: 20,
+        backgroundColor: 'white',
+        borderRadius: 20,
+        padding: 35,
+        alignItems: 'flex-start',
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5,
+    },
+    openButton: {
+        backgroundColor: '#787878',
+        borderRadius: 20,
+        padding: 10,
+        elevation: 2,
+    },
+    textStyle: {
+        color: 'white',
+        fontWeight: 'bold',
+        textAlign: 'center',
+
+    },
+    modalText: {
+
+        marginBottom: 15,
+        textAlign: 'center',
+    },
+});
